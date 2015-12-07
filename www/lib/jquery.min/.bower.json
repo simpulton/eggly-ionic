@@ -1,0 +1,11 @@
+{
+  "name": "jquery.min",
+  "_cacheHeaders": {
+    "Last-Modified": "Fri, 16 Oct 2015 18:27:31 GMT",
+    "Content-Type": "text/javascript; charset=UTF-8"
+  },
+  "main": "index.js",
+  "_source": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
+  "_target": "*",
+  "_originalSource": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+}
