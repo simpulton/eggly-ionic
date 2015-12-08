@@ -2,14 +2,6 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0"
-  },
-  "dependencies": {
-    "jquery.min": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
-    "angular": "~1.4.8",
-    "angular-ui-router": "ui-router#~0.2.15",
-    "angular-animate": "~1.4.8",
-    "angular-sanitize": "~1.4.8",
-    "ionic": "~1.1.1"
+    "ionic": "driftyco/ionic-bower#1.1.1"
   }
 }
