@@ -2,7 +2,8 @@ angular.module('Eggly', [
     'ngAnimate',
     'ui.router',
     'categories',
-    'categories.bookmarks'
+    'categories.bookmarks',
+    'ionic'
 ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider

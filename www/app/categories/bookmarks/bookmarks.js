@@ -19,7 +19,7 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel) {
+    .controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel, $sanitize) {
         var bookmarksListCtrl = this;
 
         CategoriesModel.setCurrentCategory($stateParams.category);
@@ -32,7 +32,10 @@ angular.module('categories.bookmarks', [
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
         bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
+
+        bookmarksListCtrl.goToUrl = function (url) {
+            window.open(url, '_system', 'location=yes')
+        }
     })
 
 ;
-

@@ -12,12 +12,21 @@ a {
     text-decoration: none;
 }
 
+.modal-backdrop {
+    background-color: transparent;
+}
+
 a:hover {
     color: #5bc0de;
 }
 
 .btn, .btn:focus {
     outline: none !important;
+}
+
+ion-side-menu-content > .button {
+    margin-top: 30px;
+    padding-left: 20px;
 }
 
 .btn-link {
@@ -30,7 +39,7 @@ a:hover {
     color: #5bc0de;
 }
 
-.sidebar a {
+.menu a {
     color: #5bc0de;
     font-size: 30px;
     text-decoration: none;
@@ -42,25 +51,26 @@ a:hover {
 }
 
 .logo {
-    padding: 20px;
+    padding: 30px 20px 20px;
 }
 
-.sidebar {
-    display: none;
+.menu {
+    background-color: #2B2828;
     padding-left: 0px;
     padding-right: 0px;
+    border-right: 1px solid #7B807E
 }
 
-.sidebar > ul {
+.menu > ul {
     margin: 0px;
     padding: 0px;
 }
 
-.sidebar .active {
+.menu .active {
     background-color: #D5DBD8;
 }
 
-.sidebar .active > a {
+.menu .active > a {
     text-decoration: none;
     color: #2B2828;
 }
@@ -82,24 +92,8 @@ a:hover {
     background-color: #D5DBD8;
 }
 
-@media (min-width: 768px) {
-    .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1000;
-        display: block;
-        overflow-x: hidden;
-        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-        background-color: #2B2828;
-        border-right: 1px solid #7B807E;
-    }
-}
-
 .main {
-    padding-top: 96px;
-    padding-left: 24px;
+    padding: 0 15px;
 }
 
 .createBookmark {
@@ -107,6 +101,10 @@ a:hover {
     padding-right: 5px;
 }
 
-.create-form, .edit-form {
-    padding: 20px;
+.edit-form {
+    padding: 40px 20px 20px;
+}
+
+.create-form {
+    padding: 50px 20px 20px;
 }

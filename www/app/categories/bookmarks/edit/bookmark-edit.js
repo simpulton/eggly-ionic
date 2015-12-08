@@ -4,13 +4,31 @@ angular.module('categories.bookmarks.edit', [])
             .state('eggly.categories.bookmarks.edit', {
                 url: '/bookmarks/:bookmarkId/edit',
                 //target the un-named 'ui-view' in PARENT states template
-                templateUrl: 'app/categories/bookmarks/edit/bookmark-edit.tmpl.html',
                 controller: 'EditBookmarkCtrl as editBookmarkCtrl'
             })
         ;
     })
-    .controller('EditBookmarkCtrl', function ($state, $stateParams, BookmarksModel) {
+    .controller('EditBookmarkCtrl', function ($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
         var editBookmarkCtrl = this;
+
+        $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit/bookmark-edit.tmpl.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            editBookmarkCtrl.modal = modal;
+            editBookmarkCtrl.modal.show();
+        })
+
+        $scope.$on('modal.hidden', function (e, modal) {
+            if (!editBookmarkCtrl.modalRemoved) {
+                editBookmarkCtrl.modalRemoved = true;
+                editBookmarkCtrl.modal.remove();
+            }
+        });
+
+        $scope.$on('modal.removed', function (e, modal) {
+            returnToBookmarks();
+        });
 
         function returnToBookmarks() {
             $state.go('eggly.categories.bookmarks', {
@@ -21,11 +39,11 @@ angular.module('categories.bookmarks.edit', [])
         function updateBookmark() {
             editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);
             BookmarksModel.updateBookmark(editBookmarkCtrl.editedBookmark);
-            returnToBookmarks();
+            editBookmarkCtrl.modal.remove();
         }
 
         function cancelEditing() {
-            returnToBookmarks();
+            editBookmarkCtrl.modal.remove();
         }
 
         BookmarksModel.getBookmarkById($stateParams.bookmarkId)

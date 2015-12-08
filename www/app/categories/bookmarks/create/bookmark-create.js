@@ -6,13 +6,31 @@ angular.module('categories.bookmarks.create', [
             .state('eggly.categories.bookmarks.create', {
                 url: '/bookmarks/create',
                 //target the un-named 'ui-view' in PARENT states template
-                templateUrl: 'app/categories/bookmarks/create/bookmark-create.tmpl.html',
                 controller: 'CreateBookMarkCtrl as createBookmarkCtrl'
             })
         ;
     })
-    .controller('CreateBookMarkCtrl', function($state, $stateParams, BookmarksModel) {
+    .controller('CreateBookMarkCtrl', function($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
         var createBookmarkCtrl = this;
+
+        $ionicModal.fromTemplateUrl('app/categories/bookmarks/create/bookmark-create.tmpl.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            createBookmarkCtrl.modal = modal;
+            createBookmarkCtrl.modal.show();
+        })
+
+        $scope.$on('modal.hidden', function (e, modal) {
+            if (!createBookmarkCtrl.modalRemoved) {
+                createBookmarkCtrl.modalRemoved = true;
+                createBookmarkCtrl.modal.remove();
+            }
+        });
+
+        $scope.$on('modal.removed', function (e, modal) {
+            returnToBookmarks();
+        });
 
         function returnToBookmarks() {
             $state.go('eggly.categories.bookmarks', {
@@ -21,12 +39,12 @@ angular.module('categories.bookmarks.create', [
         }
 
         function cancelCreating() {
-            returnToBookmarks();
+            createBookmarkCtrl.modal.remove();
         }
 
         function createBookmark() {
             BookmarksModel.createBookmark(createBookmarkCtrl.newBookmark);
-            returnToBookmarks();
+            createBookmarkCtrl.modal.remove();
         }
 
         function resetForm() {

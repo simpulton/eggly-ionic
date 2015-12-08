@@ -2,9 +2,9 @@
     <button type="button" class="close" ng-click="bookmarksListCtrl.deleteBookmark(bookmark)">&times;</button>
     <button type="button" class="btn btn-link" ui-sref="eggly.categories.bookmarks.edit({ bookmarkId:bookmark.id})" ><span class="glyphicon glyphicon-pencil"></span>
     </button>
-    <a href="{{bookmark.url}}" target="_blank">{{bookmark.title}}</a>
+    <a href="#" ng-click="bookmarksListCtrl.goToUrl(bookmark.url)">{{bookmark.title}}</a>
 </div>
-<hr/>
+<hr ng-if="bookmarksListCtrl.getCurrentCategory()"/>
 <ui-view>
     <div ng-if="bookmarksListCtrl.getCurrentCategory()">
         <button type="button" class="btn btn-link"
