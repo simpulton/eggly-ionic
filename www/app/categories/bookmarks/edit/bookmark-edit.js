@@ -9,15 +9,17 @@ angular.module('categories.bookmarks.edit', [])
         ;
     })
     .controller('EditBookmarkCtrl', function ($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
+
         var editBookmarkCtrl = this;
 
-        $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit/bookmark-edit.tmpl.html', {
+        var modal = $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit/bookmark-edit.tmpl.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
             editBookmarkCtrl.modal = modal;
             editBookmarkCtrl.modal.show();
         })
+
 
         $scope.$on('modal.hidden', function (e, modal) {
             if (!editBookmarkCtrl.modalRemoved) {
@@ -33,16 +35,21 @@ angular.module('categories.bookmarks.edit', [])
         function returnToBookmarks() {
             $state.go('eggly.categories.bookmarks', {
                 category: $stateParams.category
-            })
+            });
         }
 
         function updateBookmark() {
             editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);
             BookmarksModel.updateBookmark(editBookmarkCtrl.editedBookmark);
+
+            $scope.$emit('bookmarkUpdated');
+
+            editBookmarkCtrl.modalRemoved = true;
             editBookmarkCtrl.modal.remove();
         }
 
         function cancelEditing() {
+            editBookmarkCtrl.modalRemoved = true;
             editBookmarkCtrl.modal.remove();
         }
 

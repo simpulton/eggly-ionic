@@ -6,6 +6,10 @@ body {
     color: #4F534E;
 }
 
+.disable-pointer-events {
+    pointer-events: all;
+}
+
 a {
     color: #373A36;
     font-size: 24px;
@@ -29,10 +33,6 @@ a:focus {
     outline: none !important;
 }
 
-.btn.delete, .btn.delete:hover {
-    color: red;
-}
-
 ion-side-menu-content > .button {
     margin-top: 30px;
     padding-left: 20px;
@@ -48,12 +48,6 @@ ion-side-menu-content > .button {
     color: inherit;
 }
 
-.menu a {
-    color: #5bc0de;
-    font-size: 30px;
-    text-decoration: none;
-}
-
 .sub-header {
     padding-bottom: 10px;
     border-bottom: 1px solid #EEE;
@@ -63,16 +57,17 @@ ion-side-menu-content > .button {
     padding: 30px 20px 20px;
 }
 
-.menu {
+.menu .pane {
     background-color: #2B2828;
     padding-left: 0px;
     padding-right: 0px;
-    border-right: 1px solid #7B807E
+    border-right: 1px solid #7B807E;
 }
 
-.menu > ul {
-    margin: 0px;
-    padding: 0px;
+.menu a {
+    color: #5bc0de;
+    font-size: 30px;
+    text-decoration: none;
 }
 
 .menu .active {
@@ -89,6 +84,11 @@ ion-side-menu-content > .button {
     color: #5bc0de;
 }
 
+.menu .item {
+    background: transparent;
+    border:none;
+}
+
 .editing > button {
     color: #5bc0de !important;
 }
@@ -101,19 +101,7 @@ ion-side-menu-content > .button {
     background-color: #D5DBD8;
 }
 
-.main {
-    padding: 0 15px;
-}
-
 .createBookmark {
     padding-left: 5px;
     padding-right: 5px;
-}
-
-.edit-form {
-    padding: 40px 20px 20px;
-}
-
-.create-form {
-    padding: 50px 20px 20px;
 }

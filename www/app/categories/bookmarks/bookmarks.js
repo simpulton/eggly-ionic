@@ -13,29 +13,66 @@ angular.module('categories.bookmarks', [
                 views: {
                     'bookmarks@': {
                         templateUrl: 'app/categories/bookmarks/bookmarks.tmpl.html',
-                        controller: 'BookmarksListCtrl as bookmarksListCtrl'
+                        controller: 'BookmarksListCtrl',
+                        controllerAs: 'bookmarksListCtrl'
                     }
                 }
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel, $sanitize) {
+    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel, BookmarksModel, $sanitize, $timeout) {
         var bookmarksListCtrl = this;
 
-        CategoriesModel.setCurrentCategory($stateParams.category);
+        bookmarksListCtrl.isEditMode = false;
+        bookmarksListCtrl.title = $stateParams.category || 'Bookmarks';
 
-        BookmarksModel.getBookmarks()
-            .then(function (bookmarks) {
-                bookmarksListCtrl.bookmarks = bookmarks;
-            });
+        CategoriesModel.setCurrentCategory($stateParams.category);
+        getBookmarks();
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
-        bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
 
-        bookmarksListCtrl.goToUrl = function (url) {
-            window.open(url, '_system', 'location=yes')
+        bookmarksListCtrl.toggleEditMode = function toggleEditMode() {
+            bookmarksListCtrl.isEditMode = !bookmarksListCtrl.isEditMode;
+        };
+
+        bookmarksListCtrl.goToUrl = function (bookmark) {
+            if (bookmarksListCtrl.isEditMode) {
+                $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category});
+            } else {
+                window.open(bookmark.url, '_system', 'location=yes')
+            }
+        };
+
+        bookmarksListCtrl.moveBookmark = function moveBookmark(bookmark, fromIndex, toIndex) {
+            bookmarksListCtrl.bookmarks.splice(fromIndex, 1);
+            bookmarksListCtrl.bookmarks.splice(toIndex, 0, bookmark);
+        };
+
+        bookmarksListCtrl.deleteBookmark = function deleteBookmark(bookmark) {
+            BookmarksModel.deleteBookmark(bookmark);
+
+            getBookmarks();
         }
+
+        function getBookmarks() {
+            BookmarksModel.getBookmarks()
+                .then(function success(bookmarks) {
+                    var category = CategoriesModel.getCurrentCategoryName() || $stateParams.category;
+
+                    bookmarksListCtrl.bookmarks =
+                        category ? _.where(bookmarks, {category: category}) : bookmarks;
+                })
+
+        }
+
+        $scope.$on('bookmarkUpdated', function bookmarkUpdated() {
+            getBookmarks();
+        });
+
+        $scope.$on('bookmarkCreated', function bookmarkUpdated() {
+            getBookmarks();
+        });
     })
 
 ;

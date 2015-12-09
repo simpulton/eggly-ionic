@@ -1,18 +1,30 @@
-<div ng-repeat="bookmark in bookmarksListCtrl.bookmarks | filter:{category:bookmarksListCtrl.getCurrentCategoryName()}">
-    <button type="button" class="btn btn-link ion-minus-circled pull-right delete"
-            ng-click="bookmarksListCtrl.deleteBookmark(bookmark)">
-    </button>
-    <button type="button" class="btn btn-link" ui-sref="eggly.categories.bookmarks.edit({ bookmarkId:bookmark.id})" ><span class="glyphicon glyphicon-pencil"></span>
-    </button>
-    <a href="#" ng-click="bookmarksListCtrl.goToUrl(bookmark.url)">{{bookmark.title}}</a>
-</div>
-<hr ng-if="bookmarksListCtrl.getCurrentCategory()"/>
-<ui-view>
-    <div ng-if="bookmarksListCtrl.getCurrentCategory()">
-        <button type="button" class="btn btn-link"
-                ui-sref="eggly.categories.bookmarks.create">
-            <span class="glyphicon glyphicon-plus"></span>
-            Create Bookmark
-        </button>
-    </div>
-</ui-view>
+<ion-view cache-view="false" view-title="{{bookmarksListCtrl.title}}">
+    <ion-nav-buttons side="primary">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="secondary">
+        <button ng-click="bookmarksListCtrl.toggleEditMode()" class="button button-icon icon ion-edit"></button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-list can-swipe="true" show-delete="bookmarksListCtrl.isEditMode" show-reorder="true">
+            <ion-item href="" ng-click="bookmarksListCtrl.goToUrl(bookmark)"
+                      ng-repeat="bookmark in bookmarksListCtrl.bookmarks" item="bookmark">
+
+                {{bookmark.title}}
+
+                <ion-delete-button ng-click="bookmarksListCtrl.deleteBookmark(bookmark)" class="ion-minus-circled"></ion-delete-button>
+                <ion-reorder-button on-reorder="bookmarksListCtrl.moveBookmark(bookmark, $fromIndex, $toIndex)" class="ion-navicon"></ion-reorder-button>
+            </ion-item>
+        </ion-list>
+        <ui-view>
+            <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
+                <button type="button" class="button button-balanced button-block"
+                        ui-sref="eggly.categories.bookmarks.create">
+                    <i class="icon ion-compose"></i> Create Bookmark
+                </button>
+            </div>
+        </ui-view>
+    </ion-content>
+</ion-view>

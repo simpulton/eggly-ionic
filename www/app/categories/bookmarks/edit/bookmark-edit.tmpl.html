@@ -1,16 +1,23 @@
 <ion-modal-view class="editBookmark">
-
-    <form class="edit-form" role="form" ng-submit="editBookmarkCtrl.updateBookmark(editBookmarkCtrl.editedBookmark)" novalidate>
-        <h4 class="padding-bottom">Editing {{editBookmarkCtrl.bookmark.title}}</h4>
-        <div class="form-group">
-            <label>Bookmark Title</label>
-            <input type="text" class="form-control" ng-model="editBookmarkCtrl.editedBookmark.title" placeholder="Enter title">
-        </div>
-        <div class="form-group">
-            <label>Bookmark URL</label>
-            <input type="text" class="form-control" ng-model="editBookmarkCtrl.editedBookmark.url" placeholder="Enter URL">
-        </div>
-        <button type="submit" class="btn btn-info btn-lg">Save</button>
-        <button type="button" class="btn btn-default btn-lg pull-right" ng-click="editBookmarkCtrl.cancelEditing()">Cancel</button>
+    <form role="form" ng-submit="editBookmarkCtrl.updateBookmark(editBookmarkCtrl.editedBookmark)" novalidate>
+        <ion-header-bar align-title="center" class="bar-calm">
+            <div class="buttons">
+                <button type="submit" class="button button-icon ion-archive"></button>
+            </div>
+            <div class="title">Edit Bookmark</div>
+            <div class="buttons">
+                <button type="button" class="button button-icon ion-close-round" ng-click="editBookmarkCtrl.cancelEditing()"></button>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Bookmark Title</span>
+                <input type="text" placeholder="Enter title" ng-model="editBookmarkCtrl.editedBookmark.title">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Bookmark URL</span>
+                <input type="text" placeholder="Enter title" ng-model="editBookmarkCtrl.editedBookmark.url">
+            </label>
+        </ion-content>
     </form>
 </ion-modal-view>

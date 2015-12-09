@@ -1,46 +1,49 @@
 <!doctype html>
 <html ng-app="Eggly">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Eggly</title>
 
-        <link rel="stylesheet" href="assets/css/normalize.css">
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Eggly</title>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.1.1/css/ionic.min.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 
-        <link rel="stylesheet" href="assets/css/eggly.css">
-        <link rel="stylesheet" href="assets/css/animations.css">
-    </head>
-    <body>
-        <ion-side-menus>
-            <ion-side-menu-content>
-                <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-                <div class="main" ui-view="bookmarks"></div>
-            </ion-side-menu-content>
-            <ion-side-menu side="left">
-                <div ui-view="categories"></div>
-            </ion-side-menu>
-        </ion-side-menus>
+    <link rel="stylesheet" href="https://code.ionicframework.com/nightly/css/ionic.css">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/eggly.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+<body>
+    <ion-side-menus>
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-calm"></ion-nav-bar>
+            <ion-nav-view name="bookmarks"></ion-nav-view>
+        </ion-side-menu-content>
+        <ion-side-menu side="left">
+            <ion-nav-view name="categories"></ion-nav-view>
+        </ion-side-menu>
+    </ion-side-menus>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.1.1/js/ionic.min.js" charset="utf-8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.1.1/js/ionic-angular.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-        <script src="app/eggly-app.js"></script>
-        <script src="app/categories/categories.js"></script>
-        <script src="app/categories/bookmarks/bookmarks.js"></script>
-        <script src="app/categories/bookmarks/create/bookmark-create.js"></script>
-        <script src="app/categories/bookmarks/edit/bookmark-edit.js"></script>
-        <script src="app/common/models/bookmarks-model.js"></script>
-        <script src="app/common/models/categories-model.js"></script>
-    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.1.1/js/ionic.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionic/1.1.1/js/ionic-angular.min.js" charset="utf-8"></script>
+
+    <script src="app/eggly-app.js"></script>
+    <script src="app/categories/categories.js"></script>
+    <script src="app/categories/bookmarks/bookmarks.js"></script>
+    <script src="app/categories/bookmarks/create/bookmark-create.js"></script>
+    <script src="app/categories/bookmarks/edit/bookmark-edit.js"></script>
+    <script src="app/common/models/bookmarks-model.js"></script>
+    <script src="app/common/models/categories-model.js"></script>
+</body>
+
 </html>

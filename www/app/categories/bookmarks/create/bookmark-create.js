@@ -39,12 +39,17 @@ angular.module('categories.bookmarks.create', [
         }
 
         function cancelCreating() {
+            createBookmarkCtrl.modalRemoved = true;
             createBookmarkCtrl.modal.remove();
         }
 
         function createBookmark() {
             BookmarksModel.createBookmark(createBookmarkCtrl.newBookmark);
+
+            createBookmarkCtrl.modalRemoved = true;
             createBookmarkCtrl.modal.remove();
+
+            $scope.$emit('bookmarkCreated');
         }
 
         function resetForm() {

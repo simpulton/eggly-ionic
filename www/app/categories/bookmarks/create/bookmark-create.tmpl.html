@@ -1,14 +1,23 @@
 <ion-modal-view>
-    <form class="create-form padding-top" role="form" ng-submit="createBookmarkCtrl.createBookmark(newBookmark)" novalidate>
-        <div class="form-group">
-            <label for="newBookmarkTitle">Bookmark Title</label>
-            <input type="text" class="form-control" id="newBookmarkTitle" ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
-        </div>
-        <div class="form-group">
-            <label for="newBookmarkURL">Bookmark URL</label>
-            <input type="text" class="form-control" id="newBookmarkURL" ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
-        </div>
-        <button type="submit" class="btn btn-info btn-lg">Create</button>
-        <button type="button" class="btn btn-default btn-lg pull-right" ng-click="createBookmarkCtrl.cancelCreating()">Cancel</button>
+    <form role="form" ng-submit="createBookmarkCtrl.createBookmark(newBookmark)" novalidate>
+        <ion-header-bar align-title="center" class="bar-calm">
+            <div class="buttons">
+                <button type="submit" class="button button-icon ion-archive"></button>
+            </div>
+            <div class="title">Create Bookmark</div>
+            <div class="buttons">
+                <button type="button" class="button button-icon ion-close-round" ng-click="createBookmarkCtrl.cancelCreating()"></button>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Bookmark Title</span>
+                <input type="text" class="form-control" id="newBookmarkTitle" ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Bookmark URL</span>
+                <input type="text" class="form-control" id="newBookmarkURL" ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
+            </label>
+        </ion-content>
     </form>
 </ion-modal-view>
