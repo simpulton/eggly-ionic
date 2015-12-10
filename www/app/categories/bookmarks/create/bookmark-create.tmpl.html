@@ -10,13 +10,15 @@
             </div>
         </ion-header-bar>
         <ion-content>
-            <label class="item item-input item-stacked-label">
+            <label for="newBookmarkTitle" class="item item-input item-stacked-label">
                 <span class="input-label">Bookmark Title</span>
-                <input type="text" class="form-control" id="newBookmarkTitle" ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
+                <input type="text" name="newBookmarkTitle" id="newBookmarkTitle"
+                       ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
             </label>
-            <label class="item item-input item-stacked-label">
+            <label for="newBookmarkURL" class="item item-input item-stacked-label">
                 <span class="input-label">Bookmark URL</span>
-                <input type="text" class="form-control" id="newBookmarkURL" ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
+                <input type="text" name="newBookmarkURL" id="newBookmarkURL"
+                       ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
             </label>
         </ion-content>
     </form>

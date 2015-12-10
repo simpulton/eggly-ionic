@@ -6,17 +6,22 @@
             </div>
             <div class="title">Edit Bookmark</div>
             <div class="buttons">
-                <button type="button" class="button button-icon ion-close-round" ng-click="editBookmarkCtrl.cancelEditing()"></button>
+                <button type="button" class="button button-icon ion-close-round"
+                        ng-click="editBookmarkCtrl.cancelEditing()"></button>
             </div>
         </ion-header-bar>
         <ion-content>
-            <label class="item item-input item-stacked-label">
+            <label for="editBookmarkTitle" class="item item-input item-stacked-label">
                 <span class="input-label">Bookmark Title</span>
-                <input type="text" placeholder="Enter title" ng-model="editBookmarkCtrl.editedBookmark.title">
+                <input id="editBookmarkTitle" name="editBookmarkTitle"
+                       type="text" placeholder="Enter title"
+                       ng-model="editBookmarkCtrl.editedBookmark.title">
             </label>
-            <label class="item item-input item-stacked-label">
+            <label for="editBookmarkURL" class="item item-input item-stacked-label">
                 <span class="input-label">Bookmark URL</span>
-                <input type="text" placeholder="Enter title" ng-model="editBookmarkCtrl.editedBookmark.url">
+                <input id="editBookmarkURL" name="editBookmarkURL"
+                       type="text" placeholder="Enter title"
+                       ng-model="editBookmarkCtrl.editedBookmark.url">
             </label>
         </ion-content>
     </form>
