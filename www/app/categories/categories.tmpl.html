@@ -4,7 +4,7 @@
     <!-- Left menu -->
     <ion-list class="nav nav-sidebar">
       <ion-item ng-repeat="category in categoriesListCtrl.categories" ng-class="{'active':isCurrentCategory(category)}">
-          <a menu-toggle="left" ui-sref="eggly.categories.bookmarks({category:category.name})">
+          <a nav-transition="none" menu-toggle="left" ui-sref="eggly.categories.bookmarks({category:category.name})">
               {{category.name}}
           </a>
       </ion-item>
