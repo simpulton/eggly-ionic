@@ -86,7 +86,7 @@ ion-side-menu-content > .button {
 
 .menu .item {
     background: transparent;
-    border:none;
+    border-color: #375158;
 }
 
 .editing > button {
