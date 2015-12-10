@@ -1,15 +1,17 @@
 <ion-view>
-    <a nav-transition="none" ui-sref="eggly.categories" menu-toggle="left" class="logo">
-        <img src="assets/img/eggly-logo.png">
-    </a>
-
-    <!-- Left menu -->
-    <div nav-transition="none" class="list">
-        <a class="item" ng-repeat="category in categoriesListCtrl.categories"
-            menu-toggle="left"
-            ui-sref="eggly.categories.bookmarks({category:category.name})"
-            ui-sref-active="active">
-            {{category.name}}
+    <ion-content>
+        <a nav-transition="none" ui-sref="eggly.categories" menu-toggle="left" class="logo">
+            <img src="assets/img/eggly-logo.png">
         </a>
-    </div>
+
+        <ion-list nav-transition="none">
+            <ion-item href="" ng-repeat="category in categoriesListCtrl.categories"
+                menu-toggle="left"
+                ui-sref="eggly.categories.bookmarks({category:category.name})"
+                ui-sref-active="active">
+
+                {{category.name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

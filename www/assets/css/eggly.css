@@ -24,17 +24,18 @@ a {
     border-right: 1px solid #7B807E;
 }
 
-.menu a {
-    color: #5bc0de;
-    text-decoration: none;
+.menu .item-complex .item-content {
+    background-color: #2B2828;
 }
 
 .menu .item {
+    color: #5bc0de;
+    text-decoration: none;
     background: transparent;
     border-color: #375158;
 }
 
-.menu a:not(.logo):focus, .menu .active {
+.menu .active, .menu .item .item-content.activated {
     background-color: #D5DBD8;
     color: #2B2828;
 }
