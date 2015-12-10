@@ -7,17 +7,21 @@
 
         <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://code.ionicframework.com/nightly/css/ionic.css">
 
         <link rel="stylesheet" href="assets/css/eggly.css">
         <link rel="stylesheet" href="assets/css/animations.css">
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar" ui-view="categories"></div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view="bookmarks"></div>
-            </div>
-        </div>
+        <ion-side-menus enable-menu-with-back-views="true">
+            <ion-side-menu-content>
+                <ion-nav-bar class="bar-calm"></ion-nav-bar>
+                <ion-nav-view name="bookmarks"></ion-nav-view>
+            </ion-side-menu-content>
+            <ion-side-menu side="left">
+                <ion-nav-view name="categories"></ion-nav-view>
+            </ion-side-menu>
+        </ion-side-menus>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
