@@ -1,13 +1,16 @@
 angular.module('categories.bookmarks.edit', [])
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('eggly.categories.bookmarks.edit', {
-                url: '/bookmarks/:bookmarkId/edit',
-                //target the un-named 'ui-view' in PARENT states template
-                templateUrl: 'app/categories/bookmarks/edit/bookmark-edit.tmpl.html',
-                controller: 'EditBookmarkCtrl as editBookmarkCtrl'
-            })
-        ;
+    .directive('editModal', function editBookmark() {
+        return {
+            scope: {},
+            templateUrl: 'app/categories/bookmarks/edit/bookmark-edit.tmpl.html',
+            controller: 'EditBookmarkCtrl',
+            controllerAs: 'editBookmarkCtrl',
+            bindToController: {
+                modal: '=',
+                id: '=',
+                edit: '&'
+            }
+        }
     })
     .controller('EditBookmarkCtrl', function ($state, $stateParams, BookmarksModel) {
         var editBookmarkCtrl = this;

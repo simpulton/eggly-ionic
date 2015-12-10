@@ -21,13 +21,12 @@
                                     class="ion-navicon"></ion-reorder-button>
             </ion-item>
         </ion-list>
-        <ui-view>
-            <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
-                <button type="button" class="button button-balanced button-block"
-                        ui-sref="eggly.categories.bookmarks.create">
-                    <i class="icon ion-compose"></i> Create Bookmark
-                </button>
-            </div>
-        </ui-view>
+        <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
+            <button type="button" class="button button-balanced button-block">
+                <i class="icon ion-compose"></i> Create Bookmark
+            </button>
+        </div>
+        <create-modal></create-modal>
+        <edit-modal></edit-modal>
     </ion-content>
 </ion-view>
