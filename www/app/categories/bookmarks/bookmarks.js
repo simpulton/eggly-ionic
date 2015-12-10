@@ -21,25 +21,29 @@ angular.module('categories.bookmarks', [
         ;
     })
     .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel,
-                                                    BookmarksModel, $sanitize, $timeout) {
+                                                    BookmarksModel, $sanitize, $timeout, $ionicModal) {
         var bookmarksListCtrl = this;
 
         bookmarksListCtrl.isEditMode = false;
         bookmarksListCtrl.title = $stateParams.category || 'Bookmarks';
 
         CategoriesModel.setCurrentCategory($stateParams.category);
+
         getBookmarks();
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+        bookmarksListCtrl.getBookmarks = getBookmarks;
 
         bookmarksListCtrl.toggleEditMode = function toggleEditMode() {
             bookmarksListCtrl.isEditMode = !bookmarksListCtrl.isEditMode;
         };
 
         bookmarksListCtrl.goToUrl = function (bookmark) {
+            bookmarksListCtrl.currentBookmark = bookmark;
+
             bookmarksListCtrl.isEditMode
-                ? $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category})
+                ? bookmarksListCtrl.showEditModal()
                 : window.open(bookmark.url, '_system', 'location=yes');
         };
 
@@ -52,7 +56,27 @@ angular.module('categories.bookmarks', [
             BookmarksModel.deleteBookmark(bookmark);
 
             getBookmarks();
-        }
+        };
+
+        bookmarksListCtrl.showCreateModal = function showCreateModal(bookmark) {
+            bookmarksListCtrl.createModal = $ionicModal.fromTemplateUrl('app/categories/bookmarks/create-modal.tmpl.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function success(modal) {
+                bookmarksListCtrl.createModal = modal;
+                bookmarksListCtrl.createModal.show();
+            });
+        };
+
+        bookmarksListCtrl.showEditModal = function showEditModal() {
+            bookmarksListCtrl.editModal = $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit-modal.tmpl.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function success(modal) {
+                bookmarksListCtrl.editModal = modal;
+                bookmarksListCtrl.editModal.show();
+            });
+        };
 
         function getBookmarks() {
             BookmarksModel.getBookmarks()
@@ -63,12 +87,6 @@ angular.module('categories.bookmarks', [
                         category ? _.where(bookmarks, {category: category}) : bookmarks;
                 })
         }
-
-        angular.forEach(['bookmarkUpdated', 'bookmarkCreated'], function(value){
-            $scope.$on(value, function(event){
-                getBookmarks();
-            });
-        });
     })
 
 ;

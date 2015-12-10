@@ -1,14 +1,15 @@
-angular.module('categories.bookmarks.create', [
-
-])
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('eggly.categories.bookmarks.create', {
-                url: '/bookmarks/create',
-                //target the un-named 'ui-view' in PARENT states template
-                controller: 'CreateBookMarkCtrl as createBookmarkCtrl'
-            })
-        ;
+angular.module('categories.bookmarks.create', [])
+    .directive('createModal', function editBookmark() {
+        return {
+            scope: {},
+            templateUrl: 'app/categories/bookmarks/create/bookmark-create.tmpl.html',
+            controller: 'CreateBookMarkCtrl',
+            controllerAs: 'createBookmarkCtrl',
+            bindToController: {
+                modal: '=',
+                create: '&'
+            }
+        }
     })
     .controller('CreateBookMarkCtrl', function($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
         var createBookmarkCtrl = this;
@@ -20,17 +21,14 @@ angular.module('categories.bookmarks.create', [
         }
 
         function cancelCreating() {
-            createBookmarkCtrl.modalRemoved = true;
             createBookmarkCtrl.modal.remove();
         }
 
         function createBookmark() {
             BookmarksModel.createBookmark(createBookmarkCtrl.newBookmark);
 
-            createBookmarkCtrl.modalRemoved = true;
+            createBookmarkCtrl.create();
             createBookmarkCtrl.modal.remove();
-
-            $scope.$emit('bookmarkCreated');
         }
 
         function resetForm() {
@@ -41,30 +39,8 @@ angular.module('categories.bookmarks.create', [
             };
         }
 
-        function createModal() {
-            $ionicModal.fromTemplateUrl('app/categories/bookmarks/create/bookmark-create.tmpl.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function (modal) {
-                createBookmarkCtrl.modal = modal;
-                createBookmarkCtrl.modal.show();
-            });
-        }
-
-        $scope.$on('modal.hidden', function (e, modal) {
-            if (!createBookmarkCtrl.modalRemoved) {
-                createBookmarkCtrl.modalRemoved = true;
-                createBookmarkCtrl.modal.remove();
-            }
-        });
-
-        $scope.$on('modal.removed', function (e, modal) {
-            returnToBookmarks();
-        });
-
         createBookmarkCtrl.cancelCreating = cancelCreating;
         createBookmarkCtrl.createBookmark = createBookmark;
 
         resetForm();
-        createModal();
     });

@@ -1,26 +1,24 @@
-<ion-modal-view>
-    <form role="form" ng-submit="createBookmarkCtrl.createBookmark(newBookmark)" novalidate>
-        <ion-header-bar align-title="center" class="bar-calm">
-            <div class="buttons">
-                <button type="submit" class="button button-icon ion-archive"></button>
-            </div>
-            <div class="title">Create Bookmark</div>
-            <div class="buttons">
-                <button type="button" class="button button-icon ion-close-round"
-                        ng-click="createBookmarkCtrl.cancelCreating()"></button>
-            </div>
-        </ion-header-bar>
-        <ion-content>
-            <label for="newBookmarkTitle" class="item item-input item-stacked-label">
-                <span class="input-label">Bookmark Title</span>
-                <input type="text" name="newBookmarkTitle" id="newBookmarkTitle"
-                       ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
-            </label>
-            <label for="newBookmarkURL" class="item item-input item-stacked-label">
-                <span class="input-label">Bookmark URL</span>
-                <input type="text" name="newBookmarkURL" id="newBookmarkURL"
-                       ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
-            </label>
-        </ion-content>
-    </form>
-</ion-modal-view>
+<form role="form" ng-submit="createBookmarkCtrl.createBookmark(newBookmark)" novalidate>
+    <ion-header-bar align-title="center" class="bar-calm">
+        <div class="buttons">
+            <button type="submit" class="button button-icon ion-archive"></button>
+        </div>
+        <div class="title">Create Bookmark</div>
+        <div class="buttons">
+            <button type="button" class="button button-icon ion-close-round"
+                    ng-click="createBookmarkCtrl.cancelCreating()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <label for="newBookmarkTitle" class="item item-input item-stacked-label">
+            <span class="input-label">Bookmark Title</span>
+            <input type="text" name="newBookmarkTitle" id="newBookmarkTitle"
+                   ng-model="createBookmarkCtrl.newBookmark.title" placeholder="Enter title">
+        </label>
+        <label for="newBookmarkURL" class="item item-input item-stacked-label">
+            <span class="input-label">Bookmark URL</span>
+            <input type="text" name="newBookmarkURL" id="newBookmarkURL"
+                   ng-model="createBookmarkCtrl.newBookmark.url" placeholder="Enter URL">
+        </label>
+    </ion-content>
+</form>

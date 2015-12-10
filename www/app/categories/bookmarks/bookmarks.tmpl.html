@@ -16,18 +16,17 @@
 
                 <ion-delete-button ng-click="bookmarksListCtrl.deleteBookmark(bookmark)"
                                    class="ion-minus-circled"></ion-delete-button>
-                                   
+
                 <ion-reorder-button on-reorder="bookmarksListCtrl.moveBookmark(bookmark, $fromIndex, $toIndex)"
                                     class="ion-navicon"></ion-reorder-button>
             </ion-item>
         </ion-list>
-        <ui-view>
-            <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
-                <button type="button" class="button button-balanced button-block"
-                        ui-sref="eggly.categories.bookmarks.create">
-                    <i class="icon ion-compose"></i> Create Bookmark
-                </button>
-            </div>
-        </ui-view>
+
+        <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
+            <button type="button" class="button button-balanced button-block"
+                    ng-click="bookmarksListCtrl.showCreateModal()">
+                <i class="icon ion-compose"></i> Create Bookmark
+            </button>
+        </div>
     </ion-content>
 </ion-view>

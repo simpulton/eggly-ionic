@@ -1,28 +1,26 @@
-<ion-modal-view class="editBookmark">
-    <form role="form" ng-submit="editBookmarkCtrl.updateBookmark(editBookmarkCtrl.editedBookmark)" novalidate>
-        <ion-header-bar align-title="center" class="bar-calm">
-            <div class="buttons">
-                <button type="submit" class="button button-icon ion-archive"></button>
-            </div>
-            <div class="title">Edit Bookmark</div>
-            <div class="buttons">
-                <button type="button" class="button button-icon ion-close-round"
-                        ng-click="editBookmarkCtrl.cancelEditing()"></button>
-            </div>
-        </ion-header-bar>
-        <ion-content>
-            <label for="editBookmarkTitle" class="item item-input item-stacked-label">
-                <span class="input-label">Bookmark Title</span>
-                <input id="editBookmarkTitle" name="editBookmarkTitle"
-                       type="text" placeholder="Enter title"
-                       ng-model="editBookmarkCtrl.editedBookmark.title">
-            </label>
-            <label for="editBookmarkURL" class="item item-input item-stacked-label">
-                <span class="input-label">Bookmark URL</span>
-                <input id="editBookmarkURL" name="editBookmarkURL"
-                       type="text" placeholder="Enter title"
-                       ng-model="editBookmarkCtrl.editedBookmark.url">
-            </label>
-        </ion-content>
-    </form>
-</ion-modal-view>
+<form role="form" ng-submit="editBookmarkCtrl.updateBookmark(editBookmarkCtrl.editedBookmark)" novalidate>
+    <ion-header-bar align-title="center" class="bar-calm">
+        <div class="buttons">
+            <button type="submit" class="button button-icon ion-archive"></button>
+        </div>
+        <div class="title">Edit Bookmark</div>
+        <div class="buttons">
+            <button type="button" class="button button-icon ion-close-round"
+                    ng-click="editBookmarkCtrl.cancelEditing()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <label for="editBookmarkTitle" class="item item-input item-stacked-label">
+            <span class="input-label">Bookmark Title</span>
+            <input id="editBookmarkTitle" name="editBookmarkTitle"
+                   type="text" placeholder="Enter title"
+                   ng-model="editBookmarkCtrl.editedBookmark.title">
+        </label>
+        <label for="editBookmarkURL" class="item item-input item-stacked-label">
+            <span class="input-label">Bookmark URL</span>
+            <input id="editBookmarkURL" name="editBookmarkURL"
+                   type="text" placeholder="Enter title"
+                   ng-model="editBookmarkCtrl.editedBookmark.url">
+        </label>
+    </ion-content>
+</form>

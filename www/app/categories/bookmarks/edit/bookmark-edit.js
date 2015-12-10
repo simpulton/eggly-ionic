@@ -1,14 +1,18 @@
 angular.module('categories.bookmarks.edit', [])
-    .config(function ($stateProvider) {
-        $stateProvider
-            .state('eggly.categories.bookmarks.edit', {
-                url: '/bookmarks/:bookmarkId/edit',
-                //target the un-named 'ui-view' in PARENT states template
-                controller: 'EditBookmarkCtrl as editBookmarkCtrl'
-            })
-        ;
+    .directive('editModal', function editBookmark() {
+        return {
+            scope: {},
+            templateUrl: 'app/categories/bookmarks/edit/bookmark-edit.tmpl.html',
+            controller: 'EditBookmarkCtrl',
+            controllerAs: 'editBookmarkCtrl',
+            bindToController: {
+                modal: '=',
+                id: '=',
+                edit: '&'
+            }
+        }
     })
-    .controller('EditBookmarkCtrl', function ($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
+    .controller('EditBookmarkCtrl', function ($scope, BookmarksModel, $ionicModal) {
         var editBookmarkCtrl = this;
 
         function returnToBookmarks() {
@@ -21,54 +25,29 @@ angular.module('categories.bookmarks.edit', [])
             editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);
             BookmarksModel.updateBookmark(editBookmarkCtrl.editedBookmark);
 
-            $scope.$emit('bookmarkUpdated');
-
-            editBookmarkCtrl.modalRemoved = true;
+            editBookmarkCtrl.edit();
             editBookmarkCtrl.modal.remove();
         }
 
         function cancelEditing() {
-            editBookmarkCtrl.modalRemoved = true;
             editBookmarkCtrl.modal.remove();
         }
 
-        function createModal() {
-            $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit/bookmark-edit.tmpl.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function (modal) {
-                editBookmarkCtrl.modal = modal;
-                editBookmarkCtrl.modal.show();
-            });
-        }
-
         function getBookmark() {
-            BookmarksModel.getBookmarkById($stateParams.bookmarkId)
+            BookmarksModel.getBookmarkById(editBookmarkCtrl.id)
                 .then(function (bookmark) {
                     if (bookmark) {
                         editBookmarkCtrl.bookmark = bookmark;
                         editBookmarkCtrl.editedBookmark = angular.copy(editBookmarkCtrl.bookmark);
                     } else {
-                        returnToBookmarks();
+                        editBookmarkCtrl.modal.remove();
                     }
                 });
         }
 
-        $scope.$on('modal.hidden', function (e, modal) {
-            if (!editBookmarkCtrl.modalRemoved) {
-                editBookmarkCtrl.modalRemoved = true;
-                editBookmarkCtrl.modal.remove();
-            }
-        });
-
-        $scope.$on('modal.removed', function (e, modal) {
-            returnToBookmarks();
-        });
-
         editBookmarkCtrl.cancelEditing = cancelEditing;
         editBookmarkCtrl.updateBookmark = updateBookmark;
 
-        createModal();
         getBookmark();
     })
 ;
