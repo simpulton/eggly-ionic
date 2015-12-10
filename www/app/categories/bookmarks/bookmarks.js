@@ -20,7 +20,8 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel, BookmarksModel, $sanitize, $timeout) {
+    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel,
+                                                    BookmarksModel, $sanitize, $timeout) {
         var bookmarksListCtrl = this;
 
         bookmarksListCtrl.isEditMode = false;
@@ -37,11 +38,9 @@ angular.module('categories.bookmarks', [
         };
 
         bookmarksListCtrl.goToUrl = function (bookmark) {
-            if (bookmarksListCtrl.isEditMode) {
-                $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category});
-            } else {
-                window.open(bookmark.url, '_system', 'location=yes')
-            }
+            bookmarksListCtrl.isEditMode
+                ? $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category})
+                : window.open(bookmark.url, '_system', 'location=yes');
         };
 
         bookmarksListCtrl.moveBookmark = function moveBookmark(bookmark, fromIndex, toIndex) {
@@ -63,15 +62,12 @@ angular.module('categories.bookmarks', [
                     bookmarksListCtrl.bookmarks =
                         category ? _.where(bookmarks, {category: category}) : bookmarks;
                 })
-
         }
 
-        $scope.$on('bookmarkUpdated', function bookmarkUpdated() {
-            getBookmarks();
-        });
-
-        $scope.$on('bookmarkCreated', function bookmarkUpdated() {
-            getBookmarks();
+        angular.forEach(['bookmarkUpdated', 'bookmarkCreated'], function(value){
+            $scope.$on(value, function(event){
+                getBookmarks();
+            });
         });
     })
 

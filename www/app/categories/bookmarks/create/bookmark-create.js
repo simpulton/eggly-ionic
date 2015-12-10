@@ -13,25 +13,6 @@ angular.module('categories.bookmarks.create', [
     .controller('CreateBookMarkCtrl', function($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
         var createBookmarkCtrl = this;
 
-        $ionicModal.fromTemplateUrl('app/categories/bookmarks/create/bookmark-create.tmpl.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            createBookmarkCtrl.modal = modal;
-            createBookmarkCtrl.modal.show();
-        })
-
-        $scope.$on('modal.hidden', function (e, modal) {
-            if (!createBookmarkCtrl.modalRemoved) {
-                createBookmarkCtrl.modalRemoved = true;
-                createBookmarkCtrl.modal.remove();
-            }
-        });
-
-        $scope.$on('modal.removed', function (e, modal) {
-            returnToBookmarks();
-        });
-
         function returnToBookmarks() {
             $state.go('eggly.categories.bookmarks', {
                 category: $stateParams.category
@@ -60,8 +41,30 @@ angular.module('categories.bookmarks.create', [
             };
         }
 
+        function createModal() {
+            $ionicModal.fromTemplateUrl('app/categories/bookmarks/create/bookmark-create.tmpl.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function (modal) {
+                createBookmarkCtrl.modal = modal;
+                createBookmarkCtrl.modal.show();
+            });
+        }
+
+        $scope.$on('modal.hidden', function (e, modal) {
+            if (!createBookmarkCtrl.modalRemoved) {
+                createBookmarkCtrl.modalRemoved = true;
+                createBookmarkCtrl.modal.remove();
+            }
+        });
+
+        $scope.$on('modal.removed', function (e, modal) {
+            returnToBookmarks();
+        });
+
         createBookmarkCtrl.cancelCreating = cancelCreating;
         createBookmarkCtrl.createBookmark = createBookmark;
 
         resetForm();
+        createModal();
     });

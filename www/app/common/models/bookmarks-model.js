@@ -51,7 +51,6 @@ angular.module('eggly.models.bookmarks', [])
         };
 
         model.deleteBookmark = function (bookmark) {
-            console.log('delete');
             _.remove(bookmarks, function (b) {
                 return b.id == bookmark.id;
             });
