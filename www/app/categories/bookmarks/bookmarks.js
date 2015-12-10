@@ -29,10 +29,13 @@ angular.module('categories.bookmarks', [
                 bookmarksListCtrl.bookmarks = bookmarks;
             });
 
+        bookmarksListCtrl.goToUrl = function (bookmark) {
+            window.open(bookmark.url, '_system', 'location=yes');
+        };
+
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
         bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
     })
 
 ;
-
