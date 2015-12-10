@@ -12,14 +12,8 @@ angular.module('categories.bookmarks.edit', [])
             }
         }
     })
-    .controller('EditBookmarkCtrl', function ($scope, BookmarksModel, $ionicModal) {
+    .controller('EditBookmarkCtrl', function ($scope, BookmarksModel) {
         var editBookmarkCtrl = this;
-
-        function returnToBookmarks() {
-            $state.go('eggly.categories.bookmarks', {
-                category: $stateParams.category
-            });
-        }
 
         function updateBookmark() {
             editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);

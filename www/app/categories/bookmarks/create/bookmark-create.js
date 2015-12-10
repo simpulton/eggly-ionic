@@ -11,14 +11,8 @@ angular.module('categories.bookmarks.create', [])
             }
         }
     })
-    .controller('CreateBookMarkCtrl', function($scope, $state, $stateParams, BookmarksModel, $ionicModal) {
+    .controller('CreateBookMarkCtrl', function($scope, BookmarksModel, CategoriesModel) {
         var createBookmarkCtrl = this;
-
-        function returnToBookmarks() {
-            $state.go('eggly.categories.bookmarks', {
-                category: $stateParams.category
-            })
-        }
 
         function cancelCreating() {
             createBookmarkCtrl.modal.remove();
@@ -35,7 +29,7 @@ angular.module('categories.bookmarks.create', [])
             createBookmarkCtrl.newBookmark = {
                 title: '',
                 url: '',
-                category: $stateParams.category
+                category: CategoriesModel.getCurrentCategory().name
             };
         }
 
