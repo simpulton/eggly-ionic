@@ -1,12 +1,12 @@
 <ion-view>
     <ion-content>
-        <a nav-transition="none" ui-sref="eggly.categories" menu-toggle="left" class="logo">
+        <a nav-transition="none" ui-sref="eggly.categories" menu-close class="logo">
             <img src="assets/img/eggly-logo.png">
         </a>
 
         <ion-list nav-transition="none">
             <ion-item href="" ng-repeat="category in categoriesListCtrl.categories"
-                menu-toggle="left"
+                menu-close
                 ui-sref="eggly.categories.bookmarks({category:category.name})"
                 ui-sref-active="active">
 

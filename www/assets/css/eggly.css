@@ -6,28 +6,12 @@ body {
     color: #4F534E;
 }
 
+body:not(.menu-open) .disable-pointer-events {
+    pointer-events: all;
+}
+
 a {
     color: #373A36;
-    text-decoration: none;
-}
-
-.btn, .btn:focus {
-    outline: none !important;
-}
-
-.btn-link {
-    color: #373A36;
-    font-size: 24px;
-    text-decoration: none !important;
-}
-
-.btn-link:hover {
-    color: #5bc0de;
-}
-
-.sidebar a {
-    color: #5bc0de;
-    font-size: 30px;
     text-decoration: none;
 }
 
@@ -47,11 +31,11 @@ a {
 .menu .item {
     color: #5bc0de;
     text-decoration: none;
-    background: transparent;
+    background-color: transparent;
     border-color: #375158;
 }
 
-.menu .active, .menu .item .item-content.activated {
+.menu .active .item-content, .menu .item .item-content.activated {
     background-color: #D5DBD8;
     color: #2B2828;
 }
@@ -66,11 +50,6 @@ a {
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     background-color: #D5DBD8;
-}
-
-.createBookmark {
-    padding-left: 5px;
-    padding-right: 5px;
 }
 
 .create-form, .edit-form {

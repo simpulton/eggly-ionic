@@ -19,25 +19,48 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel) {
+    .controller('BookmarksListCtrl', function ($state, $stateParams, CategoriesModel, BookmarksModel) {
         var bookmarksListCtrl = this;
 
+        bookmarksListCtrl.isEditMode = false;
         bookmarksListCtrl.title = $stateParams.category || 'Bookmarks';
 
         CategoriesModel.setCurrentCategory($stateParams.category);
-
-        BookmarksModel.getBookmarks()
-            .then(function (bookmarks) {
-                bookmarksListCtrl.bookmarks = bookmarks;
-            });
-
-        bookmarksListCtrl.goToUrl = function (bookmark) {
-            window.open(bookmark.url, '_system', 'location=yes');
-        };
+        getBookmarks();
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
-        bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
+
+        bookmarksListCtrl.toggleEditMode = function toggleEditMode() {
+            bookmarksListCtrl.isEditMode = !bookmarksListCtrl.isEditMode;
+        };
+
+        bookmarksListCtrl.goToUrl = function (bookmark) {
+            bookmarksListCtrl.isEditMode
+                ? $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category})
+                : window.open(bookmark.url, '_system', 'location=yes');
+        };
+
+        bookmarksListCtrl.moveBookmark = function moveBookmark(bookmark, fromIndex, toIndex) {
+            bookmarksListCtrl.bookmarks.splice(fromIndex, 1);
+            bookmarksListCtrl.bookmarks.splice(toIndex, 0, bookmark);
+        };
+
+        bookmarksListCtrl.deleteBookmark = function deleteBookmark(bookmark) {
+            BookmarksModel.deleteBookmark(bookmark);
+
+            getBookmarks();
+        }
+
+        function getBookmarks() {
+            BookmarksModel.getBookmarks()
+                .then(function success(bookmarks) {
+                    var category = CategoriesModel.getCurrentCategoryName();
+
+                    bookmarksListCtrl.bookmarks =
+                        category ? _.where(bookmarks, {category: category}) : bookmarks;
+                })
+        }
     })
 
 ;
