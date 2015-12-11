@@ -10,6 +10,10 @@ body:not(.menu-open) .disable-pointer-events {
     pointer-events: all;
 }
 
+.modal-backdrop {
+    background: transparent;
+}
+
 a {
     color: #373A36;
     text-decoration: none;

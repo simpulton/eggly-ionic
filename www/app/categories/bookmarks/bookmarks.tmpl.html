@@ -22,11 +22,10 @@
             </ion-item>
         </ion-list>
         <div class="padding" ng-if="bookmarksListCtrl.getCurrentCategory()">
-            <button type="button" class="button button-balanced button-block">
+            <button type="button" class="button button-balanced button-block"
+                    ng-click="bookmarksListCtrl.showCreateModal()">
                 <i class="icon ion-compose"></i> Create Bookmark
             </button>
         </div>
-        <create-modal></create-modal>
-        <edit-modal></edit-modal>
     </ion-content>
 </ion-view>

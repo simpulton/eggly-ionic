@@ -15,29 +15,25 @@ angular.module('categories.bookmarks.edit', [])
     .controller('EditBookmarkCtrl', function ($state, $stateParams, BookmarksModel) {
         var editBookmarkCtrl = this;
 
-        function returnToBookmarks() {
-            $state.go('eggly.categories.bookmarks', {
-                category: $stateParams.category
-            })
-        }
-
         function updateBookmark() {
             editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);
             BookmarksModel.updateBookmark(editBookmarkCtrl.editedBookmark);
-            returnToBookmarks();
+
+            editBookmarkCtrl.edit();
+            editBookmarkCtrl.modal.remove();
         }
 
         function cancelEditing() {
-            returnToBookmarks();
+            editBookmarkCtrl.modal.remove();
         }
 
-        BookmarksModel.getBookmarkById($stateParams.bookmarkId)
+        BookmarksModel.getBookmarkById(editBookmarkCtrl.id)
             .then(function (bookmark) {
                 if (bookmark) {
                     editBookmarkCtrl.bookmark = bookmark;
                     editBookmarkCtrl.editedBookmark = angular.copy(editBookmarkCtrl.bookmark);
                 } else {
-                    returnToBookmarks();
+                    editBookmarkCtrl.modal.remove();
                 }
             });
 

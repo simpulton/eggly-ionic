@@ -19,25 +19,29 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($state, $stateParams, CategoriesModel, BookmarksModel) {
+    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel, BookmarksModel, $ionicModal) {
         var bookmarksListCtrl = this;
 
         bookmarksListCtrl.isEditMode = false;
         bookmarksListCtrl.title = $stateParams.category || 'Bookmarks';
 
         CategoriesModel.setCurrentCategory($stateParams.category);
+
         getBookmarks();
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
         bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+        bookmarksListCtrl.getBookmarks = getBookmarks;
 
         bookmarksListCtrl.toggleEditMode = function toggleEditMode() {
             bookmarksListCtrl.isEditMode = !bookmarksListCtrl.isEditMode;
         };
 
         bookmarksListCtrl.goToUrl = function (bookmark) {
+            bookmarksListCtrl.currentBookmark = bookmark;
+
             bookmarksListCtrl.isEditMode
-                ? $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category})
+                ? bookmarksListCtrl.showEditModal()
                 : window.open(bookmark.url, '_system', 'location=yes');
         };
 
@@ -50,12 +54,30 @@ angular.module('categories.bookmarks', [
             BookmarksModel.deleteBookmark(bookmark);
 
             getBookmarks();
+        };
+
+        bookmarksListCtrl.showCreateModal = function showCreateModal(bookmark) {
+            showModal('createModal', 'app/categories/bookmarks/create-modal.tmpl.html');
+        };
+
+        bookmarksListCtrl.showEditModal = function showEditModal() {
+            showModal('editModal', 'app/categories/bookmarks/edit-modal.tmpl.html');
+        };
+
+        function showModal(modalName, templateUrl) {
+            $ionicModal.fromTemplateUrl(templateUrl, {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function success(modal) {
+                bookmarksListCtrl[modalName] = modal;
+                bookmarksListCtrl[modalName].show();
+            });
         }
 
         function getBookmarks() {
             BookmarksModel.getBookmarks()
                 .then(function success(bookmarks) {
-                    var category = CategoriesModel.getCurrentCategoryName();
+                    var category = CategoriesModel.getCurrentCategoryName() || $stateParams.category;
 
                     bookmarksListCtrl.bookmarks =
                         category ? _.where(bookmarks, {category: category}) : bookmarks;
