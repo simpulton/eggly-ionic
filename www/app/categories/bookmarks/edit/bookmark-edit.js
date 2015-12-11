@@ -12,7 +12,7 @@ angular.module('categories.bookmarks.edit', [])
             }
         }
     })
-    .controller('EditBookmarkCtrl', function ($state, $stateParams, BookmarksModel) {
+    .controller('EditBookmarkCtrl', function (BookmarksModel) {
         var editBookmarkCtrl = this;
 
         function updateBookmark() {

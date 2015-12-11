@@ -19,7 +19,7 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel, BookmarksModel, $ionicModal) {
+    .controller('BookmarksListCtrl', function ($scope, $stateParams, CategoriesModel, BookmarksModel, $ionicModal) {
         var bookmarksListCtrl = this;
 
         bookmarksListCtrl.isEditMode = false;
