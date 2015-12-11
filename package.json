@@ -1,6 +1,6 @@
 {
   "name": "eggly-ionic",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "eggly-ionic: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
@@ -19,10 +19,10 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
-    "android",
     "ios"
   ]
 }

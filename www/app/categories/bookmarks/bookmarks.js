@@ -20,8 +20,7 @@ angular.module('categories.bookmarks', [
             })
         ;
     })
-    .controller('BookmarksListCtrl', function ($scope, $state, $stateParams, CategoriesModel,
-                                                    BookmarksModel, $sanitize, $timeout, $ionicModal) {
+    .controller('BookmarksListCtrl', function ($scope, $stateParams, CategoriesModel, BookmarksModel, $ionicModal) {
         var bookmarksListCtrl = this;
 
         bookmarksListCtrl.isEditMode = false;
@@ -59,24 +58,22 @@ angular.module('categories.bookmarks', [
         };
 
         bookmarksListCtrl.showCreateModal = function showCreateModal(bookmark) {
-            bookmarksListCtrl.createModal = $ionicModal.fromTemplateUrl('app/categories/bookmarks/create-modal.tmpl.html', {
-                scope: $scope,
-                animation: 'slide-in-up'
-            }).then(function success(modal) {
-                bookmarksListCtrl.createModal = modal;
-                bookmarksListCtrl.createModal.show();
-            });
+            showModal('createModal', 'app/categories/bookmarks/create-modal.tmpl.html');
         };
 
         bookmarksListCtrl.showEditModal = function showEditModal() {
-            bookmarksListCtrl.editModal = $ionicModal.fromTemplateUrl('app/categories/bookmarks/edit-modal.tmpl.html', {
+            showModal('editModal', 'app/categories/bookmarks/edit-modal.tmpl.html');
+        };
+
+        function showModal(modalName, templateUrl) {
+            $ionicModal.fromTemplateUrl(templateUrl, {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function success(modal) {
-                bookmarksListCtrl.editModal = modal;
-                bookmarksListCtrl.editModal.show();
+                bookmarksListCtrl[modalName] = modal;
+                bookmarksListCtrl[modalName].show();
             });
-        };
+        }
 
         function getBookmarks() {
             BookmarksModel.getBookmarks()

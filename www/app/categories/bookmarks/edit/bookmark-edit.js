@@ -12,7 +12,7 @@ angular.module('categories.bookmarks.edit', [])
             }
         }
     })
-    .controller('EditBookmarkCtrl', function ($scope, BookmarksModel) {
+    .controller('EditBookmarkCtrl', function (BookmarksModel) {
         var editBookmarkCtrl = this;
 
         function updateBookmark() {
@@ -27,21 +27,17 @@ angular.module('categories.bookmarks.edit', [])
             editBookmarkCtrl.modal.remove();
         }
 
-        function getBookmark() {
-            BookmarksModel.getBookmarkById(editBookmarkCtrl.id)
-                .then(function (bookmark) {
-                    if (bookmark) {
-                        editBookmarkCtrl.bookmark = bookmark;
-                        editBookmarkCtrl.editedBookmark = angular.copy(editBookmarkCtrl.bookmark);
-                    } else {
-                        editBookmarkCtrl.modal.remove();
-                    }
-                });
-        }
+        BookmarksModel.getBookmarkById(editBookmarkCtrl.id)
+            .then(function (bookmark) {
+                if (bookmark) {
+                    editBookmarkCtrl.bookmark = bookmark;
+                    editBookmarkCtrl.editedBookmark = angular.copy(editBookmarkCtrl.bookmark);
+                } else {
+                    editBookmarkCtrl.modal.remove();
+                }
+            });
 
         editBookmarkCtrl.cancelEditing = cancelEditing;
         editBookmarkCtrl.updateBookmark = updateBookmark;
-
-        getBookmark();
     })
 ;

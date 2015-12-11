@@ -11,7 +11,7 @@ angular.module('categories.bookmarks.create', [])
             }
         }
     })
-    .controller('CreateBookMarkCtrl', function($scope, BookmarksModel, CategoriesModel) {
+    .controller('CreateBookMarkCtrl', function(BookmarksModel, CategoriesModel) {
         var createBookmarkCtrl = this;
 
         function cancelCreating() {

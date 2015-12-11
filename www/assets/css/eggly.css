@@ -6,7 +6,7 @@ body {
     color: #4F534E;
 }
 
-.disable-pointer-events {
+body:not(.menu-open) .disable-pointer-events {
     pointer-events: all;
 }
 
@@ -35,7 +35,7 @@ a {
     border-color: #375158;
 }
 
-.menu .active, .menu .item .item-content.activated {
+.menu .item .active, .menu .item .item-content.activated {
     background-color: #D5DBD8;
     color: #2B2828;
 }
