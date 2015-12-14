@@ -11,7 +11,7 @@ angular.module('categories.bookmarks.create', [])
             }
         }
     })
-    .controller('CreateBookMarkCtrl', function(BookmarksModel, CategoriesModel) {
+    .controller('CreateBookMarkCtrl', function($stateParams, BookmarksModel, CategoriesModel) {
         var createBookmarkCtrl = this;
 
         function cancelCreating() {
@@ -29,7 +29,7 @@ angular.module('categories.bookmarks.create', [])
             createBookmarkCtrl.newBookmark = {
                 title: '',
                 url: '',
-                category: CategoriesModel.getCurrentCategory().name
+                category: $stateParams.category
             };
         }
 
