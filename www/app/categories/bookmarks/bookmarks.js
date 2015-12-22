@@ -38,7 +38,7 @@ angular.module('categories.bookmarks', [
         bookmarksListCtrl.goToUrl = function (bookmark) {
             bookmarksListCtrl.isEditMode
                 ? $state.go('eggly.categories.bookmarks.edit', {bookmarkId: bookmark.id, category: bookmark.category})
-                : window.open(bookmark.url, '_system', 'location=yes');
+                : window.open(bookmark.url, '_system');
         };
 
         bookmarksListCtrl.moveBookmark = function moveBookmark(bookmark, fromIndex, toIndex) {
