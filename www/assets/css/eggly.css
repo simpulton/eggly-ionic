@@ -10,10 +10,6 @@ body:not(.menu-open) .disable-pointer-events {
     pointer-events: all;
 }
 
-.modal-backdrop {
-    background: transparent;
-}
-
 a {
     color: #373A36;
     text-decoration: none;
@@ -35,27 +31,11 @@ a {
 .menu .item {
     color: #5bc0de;
     text-decoration: none;
-    background-color: transparent;
+    background: transparent;
     border-color: #375158;
 }
 
-.menu .active .item-content, .menu .item .item-content.activated {
+.menu .item .active, .menu .item .item-content.activated {
     background-color: #D5DBD8;
     color: #2B2828;
-}
-
-.editing > button {
-    color: #5bc0de !important;
-}
-.editing > a {
-    color: #5bc0de !important;
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-    text-decoration: none;
-    background-color: #D5DBD8;
-}
-
-.create-form, .edit-form {
-    padding: 20px;
 }
