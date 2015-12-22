@@ -1,5 +1,5 @@
 angular.module('categories.bookmarks.create', [])
-    .directive('createModal', function editBookmark() {
+    .directive('createModal', function createModal() {
         return {
             scope: {},
             templateUrl: 'app/categories/bookmarks/create/bookmark-create.tmpl.html',

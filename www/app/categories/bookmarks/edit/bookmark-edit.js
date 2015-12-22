@@ -1,5 +1,5 @@
 angular.module('categories.bookmarks.edit', [])
-    .directive('editModal', function editBookmark() {
+    .directive('editModal', function editModal() {
         return {
             scope: {},
             templateUrl: 'app/categories/bookmarks/edit/bookmark-edit.tmpl.html',
