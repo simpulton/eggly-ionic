@@ -30,7 +30,7 @@ angular.module('categories.bookmarks', [
             });
 
         bookmarksListCtrl.goToUrl = function (bookmark) {
-            window.open(bookmark.url, '_system', 'location=yes');
+            window.open(bookmark.url, '_system');
         };
 
         bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
