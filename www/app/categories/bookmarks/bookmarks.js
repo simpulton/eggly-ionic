@@ -42,7 +42,7 @@ angular.module('categories.bookmarks', [
 
             bookmarksListCtrl.isEditMode
                 ? bookmarksListCtrl.showEditModal()
-                : window.open(bookmark.url, '_system', 'location=yes');
+                : window.open(bookmark.url, '_system');
         };
 
         bookmarksListCtrl.moveBookmark = function moveBookmark(bookmark, fromIndex, toIndex) {
