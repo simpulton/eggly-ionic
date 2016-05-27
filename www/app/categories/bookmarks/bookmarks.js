@@ -58,7 +58,7 @@ angular.module('categories.bookmarks', [
                     var category = CategoriesModel.getCurrentCategoryName();
 
                     bookmarksListCtrl.bookmarks =
-                        category ? _.where(bookmarks, {category: category}) : bookmarks;
+                        category ? _.filter(bookmarks, {category: category}) : bookmarks;
                 })
         }
     })
