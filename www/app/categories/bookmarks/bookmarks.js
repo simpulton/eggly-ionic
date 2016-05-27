@@ -80,6 +80,9 @@ angular.module('categories.bookmarks', [
                     var category = CategoriesModel.getCurrentCategoryName() || $stateParams.category;
 
                     bookmarksListCtrl.bookmarks =
+                        /* Replaced "_.where()" with "_.filter()" see 
+                        https://github.com/lodash/lodash/wiki/Changelog#jan-12-2016--diff--docs
+                        for more information */
                         category ? _.filter(bookmarks, {category: category}) : bookmarks;
                 })
         }
