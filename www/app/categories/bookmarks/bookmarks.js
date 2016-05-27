@@ -81,7 +81,8 @@ angular.module('categories.bookmarks', [
                     var category = CategoriesModel.getCurrentCategoryName() || $stateParams.category;
 
                     bookmarksListCtrl.bookmarks =
-                        category ? _.where(bookmarks, {category: category}) : bookmarks;
+                        // Replaced "_.where()" with "_.filter()"
+                        category ? _.filter(bookmarks, {category: category}) : bookmarks;
                 })
         }
     })
